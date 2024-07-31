@@ -30,11 +30,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+# ]
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,9 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'user_auth',
     'chatrooms',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +86,21 @@ REST_FRAMEWORK = {
     ),
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'channels': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 
 SIMPLE_JWT = {
