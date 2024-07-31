@@ -45,6 +45,7 @@ class CreateRoomView(APIView):
     def get(self, request):
         room_details = Room.objects.filter(created_by = request.user)
         serializer = RoomSerializer(room_details,many=True)
+        print(serializer.data, " is the room data")
         return Response(serializer.data,status=status.HTTP_200_OK)
     
 

@@ -11,6 +11,7 @@ class RoomSerializer(ModelSerializer):
         return Room.objects.create(**validated_data)
     
 class MessagesSerializer(ModelSerializer):
+    room_name = serializers.SerializerMethodField()
     username = serializers.SerializerMethodField()
     class Meta:
         model=Messages
@@ -18,6 +19,9 @@ class MessagesSerializer(ModelSerializer):
 
     def get_username(self,obj):
         return obj.sent_by.username
+    
+    def get_room_name(self,obj):
+        return obj.room.room
     
     def create(self, validated_data):
         return Messages.objects.create(**validated_data)

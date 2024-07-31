@@ -12,6 +12,7 @@ class AsyncChatConsumer(AsyncWebsocketConsumer):
             await self.close()
             return
         self.userpk = user.pk
+        self.user = user.username
         self.room_id = self.scope['url_route']['kwargs']['id']
         self.room_name = await sync_to_async(self.get_room_name)(self.room_id)
         self.room_pk = await sync_to_async(self.get_room_pk)(self.room_id)
@@ -24,14 +25,16 @@ class AsyncChatConsumer(AsyncWebsocketConsumer):
         # Join room group
         await self.channel_layer.group_add(
             self.room_group_name,
-            self.channel_name
+            self.channel_name,
         )
         await self.accept()
 
         # Send initial messages to the WebSocket
         await self.send(text_data=json.dumps({
             'type': 'initial_messages',
-            'messages': self.serializer
+            'messages': self.serializer,
+            "user": self.user,
+            "room_name":self.room_name
         }))
 
     async def disconnect(self, close_code):
