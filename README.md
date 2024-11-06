@@ -29,8 +29,8 @@ This is the backend for a chat application built using Django and WebSockets. Th
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd chat-app-backend
+git clone https://github.com/kappalasaimohith/CHAT_APP_BACKEND
+cd CHAT_APP_BACKEND
 ```
 
 ### Create a Virtual Environment
@@ -121,5 +121,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Django Channels Documentation
 - Next.js Documentation
 ```
-
-Feel free to modify the sections, add any additional information specific to your project, and ensure the paths and configuration match your actual project structure.
